@@ -58,6 +58,17 @@ rm -rf %{buildroot}
 # >> install post
 # << install post
 
+%postun
+if [ $1 = 0 ]; then
+
+rm -rf /home/nemo/.local/share/%{name}/%{name}/QML/
+else
+if [ $1 = 1 ]; then
+echo "Upgrading"
+fi
+fi
+
+
 desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop

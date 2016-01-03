@@ -94,9 +94,15 @@ ApplicationWindow
         pageStack.replace(loginPageComponent);
     }
 
+    ///////////// 主页
     function toIndexPage() {
         popAttachedPages();
         pageStack.replace(indexPageComponent)
+    }
+
+    ////////// 用户个人中心
+    function toUserInfoPage(){
+        //
     }
 
     function showBusyIndicator() {

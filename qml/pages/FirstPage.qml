@@ -35,7 +35,11 @@ import Sailfish.Silica 1.0
 Page {
     id: page
     property alias contentItem:filick
-    // To enable PullDownMenu, place our content in a SilicaFlickable
+
+    function refresh(){
+
+    }
+
     SilicaFlickable {
         id:filick
         anchors.fill: parent

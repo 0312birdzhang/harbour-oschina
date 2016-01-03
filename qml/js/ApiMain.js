@@ -17,6 +17,7 @@ function sendWebRequest(url, callback, method, postdata) {
                     callback(xmlhttp.responseText);
                     signalcenter.loadFinished();
                 } catch(e) {
+                    console.log(e)
                     signalcenter.loadFailed(qsTr("loading erro..."));
                 }
             } else {
@@ -54,32 +55,42 @@ function parse_url(_url){ //定义函数
 var application;
 //登录二次认证
 function reqToken(code){
-    var url = api_url+oauth2_token+"?client_id="+api_id+"&client_secret="+api_securet+"&redirect_uri="+api_redirect+"&code="+code;
+    var url = api_url+oauth2_token+"?client_id="+api_id+"&grant_type=authorization_code&client_secret="+api_securet+"&redirect_uri="+api_redirect+"&code="+code;
+    console.log("ReqToken:"+url);
     sendWebRequest(url,getToken,"GET","");
 }
 function getToken(oritxt){
+    console.log("json:"+oritxt)
     var obj=JSON.parse(oritxt);
-    var access_token = obj.access_token;
-    var refresh_token = obj.refresh_token;
-    var token_type = obj.token_type;
-    var expires_in = obj.expires_in;
-    var uid = obj.uid;
+    if(obj.error){
+        signalcenter.loadFailed(obj.error_description);
+    }else{
+        var access_token = obj.access_token;
+        var refresh_token = obj.refresh_token;
+        var token_type = obj.token_type;
+        var expires_in = obj.expires_in;
+        var uid = obj.uid;
 
-    application.access_token = access_token;
-    application.refresh_token = refresh_token;
-    application.token_type = token_type;
-    application.expires_in = expires_in;
-    application.uid = uid;
+        application.access_token = access_token;
+        application.refresh_token = refresh_token;
+        application.token_type = token_type;
+        application.expires_in = expires_in;
+        application.uid = uid;
 
-    var userData = {
-        "access_token":access_token,
-        "refresh_token":refresh_token,
-        "token_type":token_type,
-        "expires_in":expires_in,
-        "uid":uid,
-        "savetime":parseInt(new Date().getTime()/1000)
+        var userData = {
+            "access_token":access_token,
+            "refresh_token":refresh_token,
+            "token_type":token_type,
+            "expires_in":expires_in,
+            "uid":uid,
+            "savetime":parseInt(new Date().getTime()/1000)
+        }
+        signalcenter.loginSuccessed();
+        getCurrentUser();
+        application.saveAuthData(JSON.stringify(userData))
     }
-    application.saveAuthData(JSON.stringify(userData))
+
+
 }
 
 function getCurrentUser(){

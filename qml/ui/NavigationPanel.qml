@@ -13,6 +13,10 @@ Panel {
     signal clicked
     signal userAvatarClicked
 
+    onUserAvatarClicked: {
+        toUserInfoPage();
+    }
+
     function initUserAvatar() {
 
     }
@@ -76,17 +80,17 @@ Panel {
                     }
                 }
             }
-//            Label {
-//                id: screenName
-//                text: "test"
-//                anchors {
-//                    top: profile.bottom
-//                    topMargin: Theme.paddingSmall
-//                    horizontalCenter: profile.horizontalCenter
-//                }
-//                font.pixelSize: Theme.fontSizeExtraSmall
-//                color: Theme.secondaryColor
-//            }
+            Label {
+                id: screenName
+                text: user.name
+                anchors {
+                    top: profile.bottom
+                    topMargin: Theme.paddingSmall
+                    horizontalCenter: profile.horizontalCenter
+                }
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
+            }
         }
         Item {
             width: column.width

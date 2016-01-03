@@ -5,8 +5,8 @@ QtObject{
     signal loadStarted;
     signal loadFinished;
     signal loadFailed(string errorstring);
-
-
+    signal loginSuccessed;
+    signal loginFailed(string errorstring);
     signal dlInfoSetted;
     signal fileHashGeted;
     signal versionGeted;

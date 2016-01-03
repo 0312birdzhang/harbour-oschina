@@ -7,7 +7,6 @@ import "../js/ApiMain.js" as JS
 Page{
     id:user_center_main
     property string webviewurl
-    anchors.fill: parent
     WebView{
         id: webLogin
         opacity: 1
@@ -22,22 +21,31 @@ Page{
         }
 
         onLoadingChanged:{
+            Qt.inputMethod.hide()
             var weburl=url.toString();
             if(weburl.indexOf(JS.api_redirect) != -1 && weburl.indexOf("code=") != -1 ){
-                Qt.inputMethod.hide()
                 var parames = JS.parse_url(weburl);
-                code=parames["code"]
+                var code=parames["code"]
                 JS.reqToken(code);
-                signalCenter.showMessage(qsTr("Login success!"));
-                toIndexPage()
             }
-            }
-        //}
-
+         }
     }
     BusyIndicator {
         anchors.centerIn: parent
         running: webLogin.loading
-        size: BusyIndicatorSize.Medium
+        size: BusyIndicatorSize.Large
+    }
+
+    Connections{
+        target: signalCenter
+        onLoginSuccessed:{
+            signalCenter.showMessage(qsTr("Login success!"));
+            toIndexPage()
+        }
+        onLoginFailed:{
+            signalCenter.showMessage(errorstring)
+            //toLoginPage()
+        }
+
     }
 }
