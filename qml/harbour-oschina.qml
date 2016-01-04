@@ -36,6 +36,7 @@ import "pages"
 import "components"
 import "ui"
 import "model"
+import "news"
 import "js/ApiMain.js" as Main
 import "js/Storge.js" as Settings
 ApplicationWindow
@@ -51,7 +52,7 @@ ApplicationWindow
     property int expires_in;
     property string uid;
     property alias user:user
-
+    property bool loading:false;
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
     SignalCenter{
@@ -74,6 +75,22 @@ ApplicationWindow
          applicationWindow.activate()
      }
     }
+    Connections{
+            target: signalCenter;
+            onLoadStarted:{
+                applicationWindow.loading=true;
+                processingtimer.restart();
+            }
+            onLoadFinished:{
+                applicationWindow.loading=false;
+                processingtimer.stop();
+            }
+            onLoadFailed:{
+                applicationWindow.loading=false;
+                processingtimer.stop();
+                signalCenter.showMessage(errorstring);
+            }
+        }
 
     Component.onCompleted: {
         Main.setsignalcenter(signalCenter);
@@ -105,12 +122,7 @@ ApplicationWindow
         //
     }
 
-    function showBusyIndicator() {
-        busyIndicator.runningBusyIndicator = true
-    }
-    function stopBusyIndicator() {
-        busyIndicator.runningBusyIndicator = false
-    }
+
     function popAttachedPages() {
         // find the first page
         var firstPage = pageStack.previousPage();
@@ -203,23 +215,19 @@ ApplicationWindow
         LoginPage{
             id:loginPage
             webviewurl:Main.webviewUrl
-
         }
-
     }
 
 
-        BusyIndicator {
-            id:busyIndicator
-            property bool runningBusyIndicator: false
-
-            parent: applicationWindow.currentPage
-            anchors.centerIn: parent
-            z: 10
-            size: BusyIndicatorSize.Large
-            running: runningBusyIndicator
-            opacity: busyIndicator.running ? 1: 0
-        }
+    BusyIndicator {
+        id:busyIndicator
+        parent: applicationWindow.currentPage
+        anchors.centerIn: parent
+        z: 10
+        size: BusyIndicatorSize.Large
+        running:loading
+        opacity: busyIndicator.running ? 1: 0
+    }
         PanelView {
             id: panelView
             // a workaround to avoid TextAutoScroller picking up PanelView as an "outer"

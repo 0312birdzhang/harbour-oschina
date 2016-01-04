@@ -57,5 +57,6 @@ DISTFILES += \
     qml/js/ApiCategory.js \
     qml/pages/SignalCenter.qml \
     qml/ui/NavigationPanel.qml \
-    qml/model/User.qml
+    qml/model/User.qml \
+    qml/news/NewsList.qml
 

@@ -22,15 +22,15 @@
 <context>
     <name>FirstPage</name>
     <message>
-        <source>Show Page 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>UI Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hello Sailors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>NewsList</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -72,6 +72,21 @@
     </message>
     <message>
         <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NewsList</name>
+    <message>
+        <source>NewsList</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AllNews</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SoftNews</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

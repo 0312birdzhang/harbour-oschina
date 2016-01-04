@@ -124,22 +124,28 @@ function loadCurrentUser(oritxt){
     }
 }
 
-var listmodel;
-function getlist(type){
-    var url=api_url+type;
-    sendWebRequest(url,loadlist,"POST","");
+var newslistmodel;
+var noticemodel;
+function getnewslist(type,pageIndex){
+    var url=api_url + news_list + "?access_token=" + application.access_token + "&catalog="+type + "&page="+pageIndex+"&pageSize=20&dataType=json";
+    sendWebRequest(url,loadnewslist,"POST","");
 }
 
 
-function loadlist(oritxt){
+function loadnewslist(oritxt){
     var obj=JSON.parse(oritxt);
-    if(obj.success == "true"){
-        listmodel.clear();
+   if(obj.error){
+        signalcenter.loadFailed(obj.error_description);
     }
-    for(var i in obj.tngou){
+    newslistmodel.clear();
+    //noticemodel.clear();
+    for(var i in obj.newslist){
+        newslistmodel.append(obj.newslist[i]);
+    }
+//    for(var j in obj.notice){
+//        noticemodel.append(obj.notice[j]);
+//    }
 
-        listmodel.append(obj.tngou[i]);
-    }
     signalcenter.loadFinished();
 }
 

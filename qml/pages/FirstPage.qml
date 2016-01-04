@@ -35,9 +35,7 @@ import Sailfish.Silica 1.0
 Page {
     id: page
     property alias contentItem:filick
-
     function refresh(){
-
     }
 
     SilicaFlickable {
@@ -47,8 +45,8 @@ Page {
         // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
         PullDownMenu {
             MenuItem {
-                text: qsTr("Show Page 2")
-                onClicked: pageStack.push(Qt.resolvedUrl("SecondPage.qml"))
+                text: qsTr("NewsList")
+                onClicked: pageStack.push(Qt.resolvedUrl("../news/NewsList.qml"))
             }
         }
 
