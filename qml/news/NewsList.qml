@@ -35,7 +35,7 @@ Page {
     id: page
     property alias contentItem:filick
     property int newstype:2//1-所有|2-综合新闻|3-软件更新
-    property int pageIndex
+    property int pageIndex:1
     function refresh(){
     }
     ListModel{
@@ -117,19 +117,58 @@ Page {
                     opacity: 0.8
 
                 }
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("NewsDetail.qml"),
+                                   {
+                                       "newsid":id
+                                   })
+                }
             }
             VerticalScrollDecorator {}
+            footer:Component{
+                Item {
+                    id: loadMoreID
+                    anchors {
+                        left: parent.left;
+                        right: parent.right;
+                    }
+                    height: Theme.itemSizeMedium
+                    Row {
+                        id:footItem
+                        spacing: Theme.paddingLarge
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        Button {
+                            text: qsTr("Prev Page")
+                            visible: pageIndex > 1
+                            onClicked: {
+                                pageIndex--;
+                                JS.getnewslist(newstype,pageIndex)
+                                listView.scrollToTop()
+                            }
+                        }
+                        Button{
+                            text:qsTr("Next Page")
+                            visible:true
+                            onClicked: {
+                                pageIndex++;
+                                JS.getnewslist(newstype,pageIndex);
+                                listView.scrollToTop()
+                            }
+                        }
+                    }
+                }
 
+            }
             ViewPlaceholder{
                 enabled: listView.count == 0
                 text: "No items yet"
             }
+
         }
     }
 
     Component.onCompleted: {
         JS.newslistmodel = newslitModel;
-
         JS.getnewslist(newstype,pageIndex)
     }
 }

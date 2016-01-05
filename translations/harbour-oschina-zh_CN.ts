@@ -89,6 +89,14 @@
         <source>SoftNews</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Prev Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Page</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SecondPage</name>

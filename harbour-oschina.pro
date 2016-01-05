@@ -58,5 +58,6 @@ DISTFILES += \
     qml/pages/SignalCenter.qml \
     qml/ui/NavigationPanel.qml \
     qml/model/User.qml \
-    qml/news/NewsList.qml
+    qml/news/NewsList.qml \
+    qml/news/NewsDetail.qml
 
