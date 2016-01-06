@@ -61,18 +61,15 @@ Panel {
                     }
                 }
             }
-            Image {
+            CircleCacheImage {
                 id: profile
                 width: userAvatar.width/4
                 height: width
                 anchors.centerIn: cover
-                asynchronous: true
-                source: user.avatar
-                onStatusChanged: {
-                    if (profile.status == Image.Ready) {
-                        //util.saveRemoteImage(userInfoObject.usrInfo.profile_image_url)
-                    }
-                }
+                cacheurl: user.avatar
+		smooth: true;
+           	cache: true
+		maskSource: "../pics/mask.bmp"
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
