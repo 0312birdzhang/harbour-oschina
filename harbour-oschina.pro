@@ -14,7 +14,8 @@ TARGET = harbour-oschina
 
 CONFIG += sailfishapp
 
-SOURCES += src/harbour-oschina.cpp
+SOURCES += src/harbour-oschina.cpp \
+    src/MyImage.cpp
 
 OTHER_FILES += qml/harbour-oschina.qml \
     qml/cover/CoverPage.qml \
@@ -59,5 +60,9 @@ DISTFILES += \
     qml/ui/NavigationPanel.qml \
     qml/model/User.qml \
     qml/news/NewsList.qml \
-    qml/news/NewsDetail.qml
+    qml/news/NewsDetail.qml \
+    qml/components/CircleCacheImage.qml
+
+HEADERS += \
+    src/MyImage.h
 

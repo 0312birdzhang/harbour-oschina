@@ -151,16 +151,14 @@ function loadnewslist(oritxt){
 
 
 var detailmodel;
-function getdetail(type){
-    var url=api_url+type;
+function getdetail(newsid){
+    var url = api_url + news_detail + "?id="+newsid + "&access_token="+application.access_token+"&dataType=json";
     sendWebRequest(url,loaddetail,"GET","");
 }
 function loaddetail(oritxt){
     var obj=JSON.parse(oritxt);
-    //if(obj.success){
-        detailmodel.clear()
-        detailmodel.append(obj)
-    //}
+    detailmodel.clear()
+    detailmodel.append(obj)
     signalcenter.loadFinished();
 }
 

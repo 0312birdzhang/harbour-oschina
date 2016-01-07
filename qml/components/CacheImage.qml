@@ -6,14 +6,13 @@ Image{
     id:thumbnail
     asynchronous: true
     property string cacheurl: ""
-    property bool cacheimg: opencache
     fillMode: Image.PreserveAspectFit;
     Python{
         id:imgpy
          Component.onCompleted: {
          addImportPath('/usr/share/harbour-oschina/qml/py'); // adds import path to the directory of the Python script
-         imgpy.importModule('image', function () {
-                call('image.cacheImg',[cacheurl],function(result){
+         imgpy.importModule('main', function () {
+                call('main.cacheImg',[cacheurl],function(result){
                     if(!result){
                         thumbnail.source = "file:////usr/share/harbour-oschina/qml/pics/default_avatar.png"
                     }else{
