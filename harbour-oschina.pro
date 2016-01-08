@@ -50,7 +50,6 @@ DISTFILES += \
     qml/components/UserAvatarHeader.qml \
     qml/js/ApiCore.js \
     qml/js/ApiMain.js \
-    qml/js/md5.js \
     qml/js/Storge.js \
     qml/py/__init__.py \
     qml/py/basedir.py \
@@ -65,4 +64,3 @@ DISTFILES += \
 
 HEADERS += \
     src/MyImage.h
-
