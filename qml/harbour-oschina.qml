@@ -90,6 +90,12 @@ ApplicationWindow
                 processingtimer.stop();
                 signalCenter.showMessage(errorstring);
             }
+            onToIndexpage:{
+              toLoginpage()
+            }
+            onToLoginpage:{
+              toLoginPage()
+            }
         }
 
     Component.onCompleted: {
@@ -157,14 +163,14 @@ ApplicationWindow
                         var currenttime = parseInt(new Date().getTime()/1000);
                         var expires_in = obj.expires_in;
                         if(currenttime - savetime >= expires_in){
-                            toLoginPage()
+                            toLoginPage();
+                            return;
                         }
                         access_token = obj.access_token;
                         refresh_token = obj.refresh_token;
                         token_type = obj.token_type;
                         uid = obj.uid;
                         Main.getCurrentUser();
-                        toIndexPage();
                     }else{
                         toLoginPage()
                     }
@@ -302,7 +308,7 @@ ApplicationWindow
             var sendMsg="";
             switch(data.toString()){
             case "1":
-                sendMsg=qsTr("Successed saved to ~/Pictures/save/Yiyao/")
+                sendMsg=qsTr("Successed saved to ~/Pictures/save/OSC/")
                 break;
             case "-1":
                 sendMsg=qsTr("Error")
@@ -319,5 +325,3 @@ ApplicationWindow
     }
 
     }
-
-

@@ -102,18 +102,8 @@ function loadCurrentUser(oritxt){
     var obj=JSON.parse(oritxt);
     if(obj.error){
         signalcenter.loadFailed(obj.error_description);
+        signalcenter.toLoginpage();
     }else{
-        /*
-        {
-            id: 899**,
-            email: "****@gmail.com",
-            name: "彭博",
-            gender: "male",
-            avatar: "http://www.oschina.net/uploads/user/****",
-            location: "广东 深圳",
-            url: "http://home.oschina.net/****"
-        }
-        */
         application.user._id = obj.id;
         application.user.email = obj.email;
         application.user.name = obj.name;
@@ -121,6 +111,7 @@ function loadCurrentUser(oritxt){
         application.user.avatar = obj.avatar;
         application.user.location = obj.location;
         application.user.url = obj.url;
+        signalcenter.toIndexpage();
     }
 }
 
@@ -254,5 +245,3 @@ function loadsexdetail(oritxt){
     }
     signalcenter.loadFinished();
 }
-
-
