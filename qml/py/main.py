@@ -33,10 +33,7 @@ def cacheImg(url):
     if os.path.exists(cachedFile):
         pass
     else:
-        #downloadImg(cachedFile,url)
-        default_avatar = downloadImg(cachedFile,url)
-        if default_avatar == "default":
-            return ""
+        downloadImg(cachedFile,url)
     #判断图片格式
     return cachedFile
 
@@ -48,10 +45,9 @@ def downloadImg(downname,downurl):
     try:
         urllib.request.urlretrieve(downurl,downname)
     except urllib.error.HTTPError:
-        return "default"
+        return ""
     except urllib.error.ContentTooShortError:
-        return "default"
-    return ""
+        return ""
 
 
 def clearImg():

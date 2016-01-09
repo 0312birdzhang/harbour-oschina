@@ -76,6 +76,13 @@
     </message>
 </context>
 <context>
+    <name>NewsDetail</name>
+    <message>
+        <source>author:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NewsList</name>
     <message>
         <source>NewsList</source>
@@ -112,10 +119,6 @@
 <context>
     <name>harbour-oschina</name>
     <message>
-        <source>Successed saved to ~/Pictures/save/Yiyao/</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -125,6 +128,10 @@
     </message>
     <message>
         <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Successed saved to ~/Pictures/save/OSC/</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -61,15 +61,13 @@ Panel {
                     }
                 }
             }
-            CircleCacheImage {
+            Image {
                 id: profile
                 width: userAvatar.width/4
                 height: width
                 anchors.centerIn: cover
-                cacheurl: user.avatar
-                smooth: true;
-                cache: true
-                maskSource: "../pics/mask.bmp"
+                asynchronous:true
+                source: user.avatar
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {

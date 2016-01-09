@@ -12,6 +12,8 @@ QtObject{
     signal versionGeted;
     signal commentSendSuccessful;
     signal commentSendFailed(string errorstring);
+    signal toLoginpage;
+    signal toIndexpage;
     function showMessage(msg) {
         if (msg||false) {
            showMsg(msg)

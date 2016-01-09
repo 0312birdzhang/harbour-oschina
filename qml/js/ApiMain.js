@@ -102,6 +102,7 @@ function loadCurrentUser(oritxt){
     var obj=JSON.parse(oritxt);
     if(obj.error){
         signalcenter.loadFailed(obj.error_description);
+        signalcenter.toLoginpage();
     }else{
         application.user._id = obj.id;
         application.user.email = obj.email;
@@ -110,7 +111,8 @@ function loadCurrentUser(oritxt){
         application.user.avatar = obj.avatar;
         application.user.location = obj.location;
         application.user.url = obj.url;
-        console.log("url:"+obj.url)
+        console.log("avatar:"+obj.avatar)
+        signalcenter.toIndexpage();
     }
 }
 
@@ -154,6 +156,7 @@ function loaddetail(oritxt){
     detailpage.favorite = obj.favorite;
     detailpage.commentCount = obj.commentCount;
     detailpage.url = obj.url;
+    detailpage.body = obj.body;
 
     signalcenter.loadFinished();
 }
@@ -250,5 +253,3 @@ function loadsexdetail(oritxt){
     }
     signalcenter.loadFinished();
 }
-
-

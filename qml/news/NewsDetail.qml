@@ -11,39 +11,43 @@ Page{
     property int favorite
     property int commentCount
     property string url
-
-    ListModel{
-        id:detailModel
-    }
+    property string author
 
     SilicaFlickable{
         id:filick
         anchors.fill: parent
-        contentHeight: titlelabel.height + bodylabel.height + Theme.paddingLarge
+        contentHeight: header.height + bodylabel.height + authlabel.height + Theme.paddingLarge
+        PageHeader{
+            id:header
+            title: detail.title
+        }
+
         Label{
-            id:titlelabel
-            text:title
+            id:authlabel
+            text:qsTr("author:")+author
+            color: Theme.secondaryHighlightColor
             anchors{
-                left:parent.left
                 right:parent.right
-                top:parent.top
+                top:header.bottom
+                margins: Theme.paddingMedium
             }
         }
         Label{
             id:bodylabel
-            text:body
+            text:detail.body
+            wrapMode: Text.WordWrap
+            linkColor:Theme.primaryColor
+            font.letterSpacing: 2
+            textFormat: Text.RichText
+            font.pixelSize: Theme.fontSizeExtraSmall
             anchors{
-                top:titlelabel.bottom
+                top:authlabel.bottom
                 left:parent.left
                 right:parent.right
                 margins: Theme.paddingMedium
             }
 
         }
-
-
-
-
     }
 
     Component.onCompleted: {

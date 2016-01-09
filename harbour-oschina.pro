@@ -50,7 +50,6 @@ DISTFILES += \
     qml/components/UserAvatarHeader.qml \
     qml/js/ApiCore.js \
     qml/js/ApiMain.js \
-    qml/js/md5.js \
     qml/js/Storge.js \
     qml/py/__init__.py \
     qml/py/basedir.py \
@@ -61,8 +60,10 @@ DISTFILES += \
     qml/model/User.qml \
     qml/news/NewsList.qml \
     qml/news/NewsDetail.qml \
-    qml/components/CircleCacheImage.qml
+    qml/components/CircleCacheImage.qml \
+    qml/pics/background.png \
+    qml/pics/default_avatar.png \
+    qml/pics/seeting.png
 
 HEADERS += \
     src/MyImage.h
-
