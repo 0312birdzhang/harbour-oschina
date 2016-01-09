@@ -5,9 +5,10 @@ import urllib
 import urllib.request
 import imghdr
 from basedir import *
+import hashlib
 
-cachePath=XDG_CACHE_HOME+"/harbour-tngou/tngou/"
-savePath=HOME+"/Pictures/save/tngou/"
+cachePath=XDG_CACHE_HOME+"/harbour-oschina/osc/"
+savePath=HOME+"/Pictures/save/osc/"
 
 def saveImg(md5name,savename):
     try:
@@ -27,16 +28,15 @@ def isExis():
 """
     缓存图片
 """
-def cacheImg(url,md5name):
-    cachedFile = cachePath+md5name
+def cacheImg(url):
+    cachedFile = cachePath+sumMd5(url)
     if os.path.exists(cachedFile):
         pass
     else:
-        if os.path.exists(cachePath):
-            pass
-        else:
-            os.makedirs(cachePath)
-        downloadImg(cachedFile,url)
+        #downloadImg(cachedFile,url)
+        default_avatar = downloadImg(cachedFile,url)
+        if default_avatar == "default":
+            return ""
     #判断图片格式
     return cachedFile
 
@@ -45,7 +45,14 @@ def cacheImg(url,md5name):
 
 """
 def downloadImg(downname,downurl):
-    urllib.request.urlretrieve(downurl,downname)
+    try:
+        urllib.request.urlretrieve(downurl,downname)
+    except urllib.error.HTTPError:
+        return "default"
+    except urllib.error.ContentTooShortError:
+        return "default"
+    return ""
+
 
 def clearImg():
     shutil.rmtree(cachePath)
@@ -55,3 +62,10 @@ def clearImg():
 def findImgType(cachedFile):
     imgType = imghdr.what(cachedFile)
     return imgType
+
+def sumMd5(s):
+    m = hashlib.md5()
+    if isinstance(s,str):
+        s = s.encode("utf-8")
+    m.update(s)
+    return m.hexdigest()

@@ -103,17 +103,6 @@ function loadCurrentUser(oritxt){
     if(obj.error){
         signalcenter.loadFailed(obj.error_description);
     }else{
-        /*
-        {
-            id: 899**,
-            email: "****@gmail.com",
-            name: "彭博",
-            gender: "male",
-            avatar: "http://www.oschina.net/uploads/user/****",
-            location: "广东 深圳",
-            url: "http://home.oschina.net/****"
-        }
-        */
         application.user._id = obj.id;
         application.user.email = obj.email;
         application.user.name = obj.name;
@@ -121,6 +110,7 @@ function loadCurrentUser(oritxt){
         application.user.avatar = obj.avatar;
         application.user.location = obj.location;
         application.user.url = obj.url;
+        console.log("url:"+obj.url)
     }
 }
 
@@ -150,15 +140,21 @@ function loadnewslist(oritxt){
 }
 
 
-var detailmodel;
+var detailpage;
 function getdetail(newsid){
     var url = api_url + news_detail + "?id="+newsid + "&access_token="+application.access_token+"&dataType=json";
     sendWebRequest(url,loaddetail,"GET","");
 }
 function loaddetail(oritxt){
     var obj=JSON.parse(oritxt);
-    detailmodel.clear()
-    detailmodel.append(obj)
+    detailpage.title = obj.title;
+    detailpage.author = obj.author;
+    detailpage.pubDate = obj.pubDate;
+    detailpage.authorid = obj.authorid;
+    detailpage.favorite = obj.favorite;
+    detailpage.commentCount = obj.commentCount;
+    detailpage.url = obj.url;
+
     signalcenter.loadFinished();
 }
 

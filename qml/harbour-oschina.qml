@@ -228,45 +228,45 @@ ApplicationWindow
         running:loading
         opacity: busyIndicator.running ? 1: 0
     }
-        PanelView {
-            id: panelView
-            // a workaround to avoid TextAutoScroller picking up PanelView as an "outer"
-            // flickable and doing undesired contentX adjustments (the right side panel
-            // slides partially in) meanwhile typing/scrolling long TextEntry content
-            property bool maximumFlickVelocity: false
+    PanelView {
+        id: panelView
+        // a workaround to avoid TextAutoScroller picking up PanelView as an "outer"
+        // flickable and doing undesired contentX adjustments (the right side panel
+        // slides partially in) meanwhile typing/scrolling long TextEntry content
+        property bool maximumFlickVelocity: false
 
-            width: pageStack.currentPage.width
-            panelWidth: Screen.width / 3 * 2
-            panelHeight: pageStack.currentPage.height
-            height: currentPage && currentPage.contentHeight || pageStack.currentPage.height
-            visible:  (!!currentPage && !!currentPage.withPanelView) || !panelView.closed
-            anchors.centerIn: parent
-            //anchors.verticalCenterOffset:  -(panelHeight - height) / 2
+        width: pageStack.currentPage.width
+        panelWidth: Screen.width / 3 * 2
+        panelHeight: pageStack.currentPage.height
+        height: currentPage && currentPage.contentHeight || pageStack.currentPage.height
+        visible:  (!!currentPage && !!currentPage.withPanelView) || !panelView.closed
+        anchors.centerIn: parent
+        //anchors.verticalCenterOffset:  -(panelHeight - height) / 2
 
-            anchors.horizontalCenterOffset:  0
+        anchors.horizontalCenterOffset:  0
 
-            Connections {
-                target: pageStack
-                onCurrentPageChanged: panelView.hidePanel()
+        Connections {
+            target: pageStack
+            onCurrentPageChanged: panelView.hidePanel()
+        }
+
+        function initUserAvatar() {
+            leftPanel.initUserAvatar();
+        }
+
+        leftPanel: NavigationPanel {
+            id: leftPanel
+            busy: false //panelView.closed /*&& !!BufferModel.connections && BufferModel.connections.some(function (c) { return c.active && !c.connected })*/
+            //            highlighted: MessageStorage.activeHighlights > 0
+            onClicked: {
+                panelView.hidePanel();
             }
 
-            function initUserAvatar() {
-                leftPanel.initUserAvatar();
-            }
-
-            leftPanel: NavigationPanel {
-                id: leftPanel
-                busy: false //panelView.closed /*&& !!BufferModel.connections && BufferModel.connections.some(function (c) { return c.active && !c.connected })*/
-                //            highlighted: MessageStorage.activeHighlights > 0
-                onClicked: {
-                    panelView.hidePanel();
-                }
-
-                Component.onCompleted: {
-                    panelView.hidePanel();
-                }
+            Component.onCompleted: {
+                panelView.hidePanel();
             }
         }
+    }
 
         Python{
             id:py

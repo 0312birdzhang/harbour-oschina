@@ -67,9 +67,9 @@ Panel {
                 height: width
                 anchors.centerIn: cover
                 cacheurl: user.avatar
-		smooth: true;
-           	cache: true
-		maskSource: "../pics/mask.bmp"
+                smooth: true;
+                cache: true
+                maskSource: "../pics/mask.bmp"
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {

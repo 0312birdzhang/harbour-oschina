@@ -13,6 +13,7 @@ MyImage{
          addImportPath('/usr/share/harbour-oschina/qml/py'); // adds import path to the directory of the Python script
          imgpy.importModule('main', function () {
                 call('main.cacheImg',[cacheurl],function(result){
+                    console.log("result:"+result)
                     if(!result){
                         thumbnail.source = "file:////usr/share/harbour-oschina/qml/pics/default_avatar.png"
                     }else{
