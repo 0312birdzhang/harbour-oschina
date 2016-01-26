@@ -118,9 +118,33 @@ Page {
 
                 }
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("NewsDetail.qml"),
+                    //news_list.type	long	新闻类型 [0-链接新闻|1-软件推荐|2-讨论区帖子|3-博客|4-普通新闻|7-翻译文章]
+                    var toPage ="NewsDetail.qml";
+                    var toid = "newsid";
+                    switch(type){
+                    case 0:
+                        break;
+                    case 1:
+                        toPage = "ProjectDetail.qml";
+                        toid = "ident";
+                        break;
+                    case 2:
+                        //toPage = ""
+                        break;
+                    case 3:
+                        toPage = "BlogDetail.qml";
+                        toid = "ident";
+                        break;
+                    case 4:
+                        //
+                        break;
+                    case 7:
+                        //
+                        break;
+                    }
+                    pageStack.push(Qt.resolvedUrl(toPage),
                                    {
-                                       "newsid":id
+                                       toid:id
                                    })
                 }
             }

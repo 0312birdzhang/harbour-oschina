@@ -145,6 +145,7 @@ function loadnewslist(oritxt){
 var detailpage;
 function getdetail(newsid){
     var url = api_url + news_detail + "?id="+newsid + "&access_token="+application.access_token+"&dataType=json";
+    console.log("url:"+url);
     sendWebRequest(url,loaddetail,"GET","");
 }
 function loaddetail(oritxt){
