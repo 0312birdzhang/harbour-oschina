@@ -4,6 +4,7 @@ import Sailfish.Silica 1.0
 Page{
     id:detail
     property int newsid
+    property string detailapi
     property string title
     property string body
     property string pubDate
@@ -52,7 +53,6 @@ Page{
 
     Component.onCompleted: {
         JS.detailpage = detail
-        JS.getdetail(newsid)
+        JS.getdetail(newsid,detailapi)
     }
 }
-
