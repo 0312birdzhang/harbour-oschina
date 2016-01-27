@@ -39,7 +39,7 @@ function sendWebRequest(url, callback, method, postdata) {
 }
 
 //浏览器auth认证
-var webviewUrl = api_url+oauth2_authorize+"?response_type=code&client_id="+api_id+"&redirect_uri="+api_redirect+"&state=xyz"
+var webviewUrl = oauth2_authorize+"?response_type=code&client_id="+api_id+"&redirect_uri="+api_redirect+"&state=xyz"
 
 function parse_url(_url){ //定义函数
      var pattern = /(\w+)=(\w+)/ig;//定义正则表达式

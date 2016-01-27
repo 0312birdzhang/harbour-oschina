@@ -1,5 +1,5 @@
 .pragma library
-var api_url="https://www.oschina.net";
+var api_url="https://www.oschina.net/action/openapi/";
 var api_id = "JKVsTvptpOX8sfbfvexQ";
 var api_securet = "BhzbAW8Q5ZgUZmqfcg8Sf3WMd4GM94ze";
 var api_redirect = "https://client.example.com/cb";
@@ -30,4 +30,16 @@ function humanedate(datestr){
     }else{
         return thatday.getFullYear()+'-'+(thatday.getMonth()+1)+'-'+thatday.getDate();
     }
+}
+
+function parse_url(_url){ //定义函数
+     var pattern = /(\w+)=(\w+)/ig;//定义正则表达式
+     var parames = {};//定义数组
+     _url.replace(pattern, function(a, b, c){parames[b] = c;});
+    /*这是最关键的.当replace匹配到classid=9时.那么就用执行function(a,b,c);其中a的值为:classid=9,b的值为classid,c的值为9;(这是反向引用.因为在定义
+      正则表达式的时候有两个子匹配.)然后将数组的key为classid的值赋为9;然后完成.再继续匹配到id=2;
+      此时执行function(a,b,c);其中a的值为:id=2,b的值为id,c的值为2;然后将数组的key为id的值赋为2.
+      from:http://blog.csdn.net/openn/article/details/8793457
+    */
+     return parames;//返回这个数组.
 }
