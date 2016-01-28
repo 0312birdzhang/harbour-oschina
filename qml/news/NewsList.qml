@@ -119,7 +119,8 @@ Page {
                 }
                 onClicked: {
                     //news_list.type	long	新闻类型 [0-链接新闻|1-软件推荐|2-讨论区帖子|3-博客|4-普通新闻|7-翻译文章]
-                    var toid = "newsid";
+                    console.log("list type:"+type)
+                    var toid = "id";
                     var detailapi = "news_detail"
                     switch(type){
                     case 0:
@@ -146,7 +147,7 @@ Page {
                     }
                     pageStack.push(Qt.resolvedUrl("NewsDetail.qml"),
                                    {
-                                       toid:id,
+                                       "newsid":toid+"="+id,
                                        "detailapi":detailapi
                                    })
                 }

@@ -3,7 +3,7 @@ import "../js/ApiMain.js" as JS
 import Sailfish.Silica 1.0
 Page{
     id:detail
-    property int newsid
+    property string newsid
     property string detailapi
     property string title
     property string body
