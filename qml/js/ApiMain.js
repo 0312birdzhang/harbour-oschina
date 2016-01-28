@@ -46,11 +46,11 @@ var application;
 //登录二次认证
 function reqToken(code){
     var url = api_url+oauth2_token+"?client_id="+api_id+"&grant_type=authorization_code&client_secret="+api_securet+"&redirect_uri="+api_redirect+"&code="+code;
-    console.log("ReqToken:"+url);
+    //console.log("ReqToken:"+url);
     sendWebRequest(url,getToken,"GET","");
 }
 function getToken(oritxt){
-    console.log("json:"+oritxt)
+    //console.log("json:"+oritxt)
     var obj=JSON.parse(oritxt);
     if(obj.error){
         signalcenter.loadFailed(obj.error_description);
@@ -110,7 +110,8 @@ var newslistmodel;
 var noticemodel;
 function getnewslist(type,pageIndex){
     var url=api_url + news_list + "?access_token=" + application.access_token + "&catalog="+type + "&page="+pageIndex+"&pageSize=20&dataType=json";
-    sendWebRequest(url,loadnewslist,"POST","");
+
+    sendWebRequest(url,loadnewslist,"GET","");
 }
 
 

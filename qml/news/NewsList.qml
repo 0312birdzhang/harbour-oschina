@@ -81,8 +81,8 @@ Page {
                     anchors{
                         top:parent.top
                         left:parent.left
-                        leftMargin: Theme.paddingSmall
-                        rightMargin: Theme.paddingSmall
+                        leftMargin: Theme.paddingMedium
+                        rightMargin: Theme.paddingMedium
                     }
                     opacity: 0.9
                     width: parent.width

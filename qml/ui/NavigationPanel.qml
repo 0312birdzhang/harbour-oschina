@@ -2,7 +2,6 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../components"
 
-
 Panel {
     id: panel
 
@@ -21,8 +20,7 @@ Panel {
 
     }
 
-    function reloadIndex(classname){
-        currentclass=classname;
+    function reloadIndex(){
         toIndexPage();
     }
 
@@ -185,4 +183,5 @@ Panel {
             }
         }
     }
+
 }

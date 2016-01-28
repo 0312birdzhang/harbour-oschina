@@ -43,3 +43,10 @@ function saveAuthData(token) {
         }
     });
 }
+
+function clearAuthData(){
+    var db = getDatabase();
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('delete from token;');
+    });
+}

@@ -91,6 +91,7 @@ ApplicationWindow
                 signalCenter.showMessage(errorstring);
             }
             onToIndexpage:{
+              console.log("to indexpage signal")
               toIndexPage();
             }
             onToLoginpage:{
@@ -120,7 +121,8 @@ ApplicationWindow
     ///////////// 主页
     function toIndexPage() {
         popAttachedPages();
-        pageStack.replace(indexPageComponent)
+        pageStack.replace(indexPageComponent);
+
     }
 
     ////////// 用户个人中心
@@ -128,6 +130,9 @@ ApplicationWindow
         //
     }
 
+    function getCurrentUser(){
+        Main.getCurrentUser()
+    }
 
     function popAttachedPages() {
         // find the first page
@@ -143,6 +148,7 @@ ApplicationWindow
     }
 
     function saveAuthData(data){
+        Settings.clearAuthData();
         Settings.saveAuthData(data);
     }
 
@@ -151,18 +157,21 @@ ApplicationWindow
         Page{
             Timer {
                 id: timerDisplay
-                running: true; repeat: false; triggeredOnStart: true
-                interval: 1 * 1000
+                running: true;
+                repeat: false;
+                triggeredOnStart: true
+                interval: 2 * 1000
                 onTriggered: {
                     //Settings.initialize();
                     //Main.application = applicationWindow
                     var savedtoken = Settings.getAuthData();
+                    console.log("savedToken:"+savedtoken);
                     if(savedtoken){
                         var obj = JSON.parse(savedtoken);
                         var savetime = obj.savetime;
                         var currenttime = parseInt(new Date().getTime()/1000);
                         var expires_in = obj.expires_in;
-                        if(currenttime - savetime >= expires_in){
+                        if(currenttime >= savetime + expires_in){
                             toLoginPage();
                             return;
                         }
@@ -170,7 +179,8 @@ ApplicationWindow
                         refresh_token = obj.refresh_token;
                         token_type = obj.token_type;
                         uid = obj.uid;
-                        Main.getCurrentUser();
+                        getCurrentUser();
+                        toIndexPage();
                     }else{
                         toLoginPage()
                     }
