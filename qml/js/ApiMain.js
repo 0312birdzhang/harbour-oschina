@@ -41,17 +41,7 @@ function sendWebRequest(url, callback, method, postdata) {
 //浏览器auth认证
 var webviewUrl = oauth2_authorize+"?response_type=code&client_id="+api_id+"&redirect_uri="+api_redirect+"&state=xyz"
 
-function parse_url(_url){ //定义函数
-     var pattern = /(\w+)=(\w+)/ig;//定义正则表达式
-     var parames = {};//定义数组
-     _url.replace(pattern, function(a, b, c){parames[b] = c;});
-    /*这是最关键的.当replace匹配到classid=9时.那么就用执行function(a,b,c);其中a的值为:classid=9,b的值为classid,c的值为9;(这是反向引用.因为在定义
-      正则表达式的时候有两个子匹配.)然后将数组的key为classid的值赋为9;然后完成.再继续匹配到id=2;
-      此时执行function(a,b,c);其中a的值为:id=2,b的值为id,c的值为2;然后将数组的key为id的值赋为2.
-      from:http://blog.csdn.net/openn/article/details/8793457
-    */
-     return parames;//返回这个数组.
-}
+
 var application;
 //登录二次认证
 function reqToken(code){
@@ -159,6 +149,26 @@ function loaddetail(oritxt){
     detailpage.url = obj.url;
     detailpage.body = obj.body;
 
+    signalcenter.loadFinished();
+}
+
+//获取动弹列表
+var twittermodel;
+//用户ID [ 0：最新动弹，-1：热门动弹，其它：我的动弹 ]
+function gettwitterlist(user,pageIndex){
+  var url=api_url + tweet_detail + "?access_token=" + application.access_token + "&user="+user + "&page="+pageIndex+"&pageSize=20&dataType=json";
+  sendWebRequest(url,loadtwitterlist,"GET","");
+}
+
+function loadtwitterlist(oritxt){
+    var obj=JSON.parse(oritxt);
+   if(obj.error){
+        signalcenter.loadFailed(obj.error_description);
+    }
+    twittermodel.clear();
+    for(var i in obj.newslist){
+        newslistmodel.append(obj.tweetlist[i]);
+    }
     signalcenter.loadFinished();
 }
 
