@@ -69,7 +69,7 @@ Panel {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        userAvatarClicked();
+                        pageStack.push(Qt.resolvedUrl("../pages/UserCenter.qml"));
                     }
                 }
             }
@@ -93,13 +93,13 @@ Panel {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("medical")
+                text: qsTr("News")
                 color: Theme.secondaryColor
                 spacing: Theme.paddingMedium
-                icon: "../pics/medical.png"
+                icon: "../pics/news.png"
                 iconSize: Theme.itemSizeExtraSmall *2/3
                 onClicked: {
-                    reloadIndex("medical");
+                    pageStack.push(Qt.resolvedUrl("../pages/news/NewsList.qml"));
                 }
             }
         }
@@ -112,13 +112,13 @@ Panel {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("health")
+                text: qsTr("Twitter")
                 color: Theme.secondaryColor
                 spacing: Theme.paddingMedium
-                icon: "../pics/health.png"
+                icon: "../pics/twitter.png"
                 iconSize: Theme.itemSizeExtraSmall *2/3
                 onClicked: {
-                    reloadIndex("health");
+                    pageStack.push(Qt.resolvedUrl("../pages/twitter/TwitterList.qml"));
                 }
             }
 
@@ -132,13 +132,13 @@ Panel {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("life")
+                text: qsTr("Favorite")
                 color: Theme.secondaryColor
                 spacing: Theme.paddingMedium
-                icon: "../pics/life.png"
+                icon: "../pics/favorite.png"
                 iconSize: Theme.itemSizeExtraSmall *2/3
                 onClicked: {
-                    reloadIndex("life");
+                    pageStack.push(Qt.resolvedUrl("../pages/favorite/FavoriteList.qml"));
                 }
             }
 
@@ -153,13 +153,13 @@ Panel {
                     left: parent.left
                     leftMargin: Theme.paddingLarge
                 }
-                text: qsTr("meinv")
+                text: qsTr("Blog")
                 color: Theme.secondaryColor
                 spacing: Theme.paddingMedium
-                icon: "../pics/sex.png"
+                icon: "../pics/blog.png"
                 iconSize: Theme.itemSizeExtraSmall *2/3
                 onClicked: {
-                    reloadIndex("meinv");
+                    pageStack.push(Qt.resolvedUrl("../pages/blog/BlogList.qml"));
                 }
             }
 

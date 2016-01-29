@@ -50,7 +50,7 @@ var post_detail = "post_detail";
 //获取动弹列表 （最新动弹列表 我的动弹）
 var tweet_list = "tweet_list";
 
-//获取动弹列表
+//获取动弹详细
 var tweet_detail = "tweet_detail";
 
 //发布动弹

@@ -157,12 +157,12 @@ function loaddetail(oritxt){
 var twittermodel;
 //用户ID [ 0：最新动弹，-1：热门动弹，其它：我的动弹 ]
 function gettwitterlist(user,pageIndex){
-  var url=api_url + tweet_detail + "?access_token=" + application.access_token + "&user="+user + "&page="+pageIndex+"&pageSize=20&dataType=json";
+  var url=api_url + tweet_list + "?access_token=" + application.access_token + "&user="+user + "&page="+pageIndex+"&pageSize=20&dataType=json";
   sendWebRequest(url,loadtwitterlist,"GET","");
 }
 
 function loadtwitterlist(oritxt){
-    var obj=JSON.parse(oritxt);
+   var obj=JSON.parse(oritxt);
    if(obj.error){
         signalcenter.loadFailed(obj.error_description);
     }
@@ -171,7 +171,7 @@ function loadtwitterlist(oritxt){
         newslistmodel.append(obj.tweetlist[i]);
     }
     signalcenter.loadFinished();
-}
+  }
 
 var showmodel;
 function getshow(type){

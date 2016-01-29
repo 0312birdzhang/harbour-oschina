@@ -35,7 +35,7 @@ Page{
         }
         Label{
             id:bodylabel
-            text:detail.body
+            text:formathtml(detail.body)
             wrapMode: Text.WordWrap
             linkColor:Theme.primaryColor
             font.letterSpacing: 2
@@ -47,7 +47,18 @@ Page{
                 right:parent.right
                 margins: Theme.paddingMedium
             }
-
+            onLinkActivated: {
+                    var linklist=link.split(".")
+                    var linktype=linklist[linklist.length -1]
+                    if(linktype =="png" ||linktype =="jpg"||linktype =="jpeg"||linktype =="gif"||linktype =="ico"||linktype =="svg"){
+                        //console.log(linktype)
+                    }else if(linktype =="showimg"){
+                        var utl=link.substring(0,link.length-8)
+                        contentbody.text=contentbody.text.replace(link+"'><img src='../pics/default.jpg' x-src=\""+utl+"\"",utl+"'><img src=\""+utl+"\"")
+                    }else{
+                       Qt.openUrlExternally(link)
+                    }
+                }
         }
     }
 
