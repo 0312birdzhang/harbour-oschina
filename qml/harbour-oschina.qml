@@ -176,10 +176,7 @@ ApplicationWindow
                 triggeredOnStart: true
                 interval: 2 * 1000
                 onTriggered: {
-                    //Settings.initialize();
-                    //Main.application = applicationWindow
                     var savedtoken = Settings.getAuthData();
-                    console.log("savedToken:"+savedtoken);
                     if(savedtoken){
                         var obj = JSON.parse(savedtoken);
                         var savetime = obj.savetime;
@@ -207,7 +204,7 @@ ApplicationWindow
         //主页列表显示
     Component {
         id: indexPageComponent
-        FirstPage {
+        NewsList {
             id: indexPage
             //            property bool _settingsInitialized: false
             property bool _dataInitialized: false

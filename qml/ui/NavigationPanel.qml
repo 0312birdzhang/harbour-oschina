@@ -4,9 +4,6 @@ import "../components"
 
 Panel {
     id: panel
-
-//    property var _usrInfo: {"id":-1,"idstr":"","class":1,"screen_name":"","name":"","province":"","city":"","location":"","description":"","url":"","cover_image_phone":"","profile_image_url":"","profile_url":"","domain":"","weihao":"","gender":"","followers_count":0,"friends_count":0,"statuses_count":0,"favourites_count":0,"created_at":"Sun Jan 22 13:32:37 +0800 1999","following":false,"allow_all_act_msg":false,"geo_enabled":true,"verified":false,"verified_type":-1,"remark":"","status":{"text": "", "reposts_count": 0, "comments_count": 0, "attitudes_count": 0},"ptype":0,"allow_all_comment":true,"avatar_large":"","avatar_hd":"","verified_reason":"","follow_me":false,"online_status":0,"bi_followers_count":0,"lang":"zh-cn","star":0,"mbtype":0,"mbrank":0,"block_word":0}
-
     property bool _userAvatarLock: false
 
     signal clicked
@@ -99,7 +96,7 @@ Panel {
                 icon: "../pics/news.png"
                 iconSize: Theme.itemSizeExtraSmall *2/3
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("../pages/news/NewsList.qml"));
+                    pageStack.push(Qt.resolvedUrl("../news/NewsList.qml"));
                 }
             }
         }
@@ -118,7 +115,7 @@ Panel {
                 icon: "../pics/twitter.png"
                 iconSize: Theme.itemSizeExtraSmall *2/3
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("../pages/twitter/TwitterList.qml"));
+                    pageStack.push(Qt.resolvedUrl("../twitter/TwitterList.qml"));
                 }
             }
 
@@ -138,7 +135,7 @@ Panel {
                 icon: "../pics/favorite.png"
                 iconSize: Theme.itemSizeExtraSmall *2/3
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("../pages/favorite/FavoriteList.qml"));
+                    pageStack.push(Qt.resolvedUrl("../favorite/FavoriteList.qml"));
                 }
             }
 
@@ -159,7 +156,7 @@ Panel {
                 icon: "../pics/blog.png"
                 iconSize: Theme.itemSizeExtraSmall *2/3
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("../pages/blog/BlogList.qml"));
+                    pageStack.push(Qt.resolvedUrl("../blog/BlogList.qml"));
                 }
             }
 
