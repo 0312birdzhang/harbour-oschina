@@ -295,7 +295,7 @@ ApplicationWindow
         }
     }
 
-        Python{
+    Python{
             id:py
             Component.onCompleted: { // this action is triggered when the loading of this component is finished
             addImportPath(Qt.resolvedUrl('./py')); // adds import path to the directory of the Python script
@@ -345,4 +345,4 @@ ApplicationWindow
         }
     }
 
-    }
+}

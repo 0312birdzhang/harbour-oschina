@@ -109,7 +109,7 @@ function loadCurrentUser(oritxt){
 var newslistmodel;
 var noticemodel;
 function getnewslist(type,pageIndex){
-    var url=api_url + news_list + "?access_token=" + application.access_token + "&catalog="+type + "&page="+pageIndex+"&pageSize=20&dataType=json";
+    var url = api_url + news_list + "?access_token=" + application.access_token + "&catalog="+type + "&page="+pageIndex+"&pageSize=20&dataType=json";
 
     sendWebRequest(url,loadnewslist,"GET","");
 }
@@ -140,7 +140,7 @@ function getdetail(newsid,detailapi){
     sendWebRequest(url,loaddetail,"GET","");
 }
 function loaddetail(oritxt){
-    var obj=JSON.parse(oritxt);
+    var obj = JSON.parse(oritxt);
     detailpage.title = obj.title;
     detailpage.author = obj.author;
     detailpage.pubDate = obj.pubDate;
@@ -157,7 +157,7 @@ function loaddetail(oritxt){
 var twittermodel;
 //用户ID [ 0：最新动弹，-1：热门动弹，其它：我的动弹 ]
 function gettwitterlist(user,pageIndex){
-  var url=api_url + tweet_list + "?access_token=" + application.access_token + "&user="+user + "&page="+pageIndex+"&pageSize=20&dataType=json";
+  var url = api_url + tweet_list + "?access_token=" + application.access_token + "&user="+user + "&page="+pageIndex+"&pageSize=20&dataType=json";
   sendWebRequest(url,loadtwitterlist,"GET","");
 }
 
@@ -175,7 +175,7 @@ function loadtwitterlist(oritxt){
 
 var showmodel;
 function getshow(type){
-    var url=api_url+type;
+    var url = api_url+type;
     sendWebRequest(url,loadshow,"GET","");
 }
 function loadshow(oritxt){
